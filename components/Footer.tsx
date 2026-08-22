@@ -63,15 +63,8 @@ export default function Footer({ logoImageSrc }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  onMouseEnter={() => soundFx.playHover()}
-                  onClick={() => soundFx.playClick()}
-                  className="group grid h-10 w-10 place-items-center rounded-xl border border-white/[0.09] bg-white/[0.03] text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] transition-all duration-300 hover:-translate-y-1 hover:text-white"
-                  style={
-                    {
-                      ["--g" as string]: glow,
-                    } as React.CSSProperties
-                  }
-                  onMouseEnterCapture={(e) => {
+                  onMouseEnter={(e) => {
+                    soundFx.playHover();
                     e.currentTarget.style.borderColor = `rgba(${glow},0.6)`;
                     e.currentTarget.style.boxShadow = `0 12px 26px -12px rgba(0,0,0,0.9), 0 0 22px -6px rgba(${glow},0.7)`;
                   }}
@@ -79,6 +72,8 @@ export default function Footer({ logoImageSrc }: FooterProps) {
                     e.currentTarget.style.borderColor = "";
                     e.currentTarget.style.boxShadow = "";
                   }}
+                  onClick={() => soundFx.playClick()}
+                  className="group grid h-10 w-10 place-items-center rounded-xl border border-white/[0.09] bg-white/[0.03] text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] transition-all duration-300 hover:-translate-y-1 hover:text-white"
                 >
                   <Icon
                     size={17}
