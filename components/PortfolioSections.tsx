@@ -517,12 +517,18 @@ export default function PortfolioSections() {
             </div>
           </div>
 
-          <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div
+            key={selectedSkillCategory}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {filteredSkills.map((skill) => {
               const Icon = skill.icon;
 
               return (
-                <RevealItem key={skill.title} className="h-full">
+                <div key={skill.title} className="h-full">
                   <TiltCard glowColor="cyan" className="h-full">
                     <article className="glass-panel-glow group relative flex h-full flex-col justify-between rounded-3xl p-6 border border-white/10 shadow-[0_12px_35px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-cyan-400/40">
                       {/* Top Corner Reticle */}
@@ -562,19 +568,18 @@ export default function PortfolioSections() {
                         <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.mastery}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                            animate={{ width: `${skill.mastery}%` }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                             className="h-full rounded-full bg-gradient-to-r from-[#22e1ff] via-[#60a5fa] to-[#8b5cf6] shadow-[0_0_8px_rgba(34,225,255,0.8)]"
                           />
                         </div>
                       </div>
                     </article>
                   </TiltCard>
-                </RevealItem>
+                </div>
               );
             })}
-          </RevealGroup>
+          </motion.div>
         </div>
       </section>
 
@@ -618,15 +623,15 @@ export default function PortfolioSections() {
             </div>
           </div>
 
-          <div className="grid gap-8">
-            {filteredProjects.map((project, index) => (
-              <Reveal
-                key={project.title}
-                from="up"
-                distance={24}
-                delay={index * 0.08}
-                duration={0.7}
-              >
+          <motion.div
+            key={selectedProjectCategory}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="grid gap-8"
+          >
+            {filteredProjects.map((project) => (
+              <div key={project.title}>
                 <TiltCard glowColor="cyan">
                   <article className="glass-slab group relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_20px_55px_rgba(0,0,0,0.8)] transition-all duration-500 hover:border-cyan-400/40">
                     <div className="grid items-center lg:grid-cols-[1.05fr_0.95fr]">
@@ -712,9 +717,9 @@ export default function PortfolioSections() {
                     </div>
                   </article>
                 </TiltCard>
-              </Reveal>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
